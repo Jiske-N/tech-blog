@@ -2,13 +2,33 @@ const express = require('express');
 const router = express.Router();
 const { User } = require('../../models');
 
+// router.get('/', async (req, res) => {
+//   try {
+//     const users = await User.findAll();
+//     if (!users) {
+//       res.status(400).json({ message: 'No users.' });
+//     }
+//     res.status(200).json(users);
+//   } catch (error) {
+//     res.status(500).json(error);
+//   }
+// });
+
 router.get('/', async (req, res) => {
   try {
-    const users = await User.findAll();
-    if (!users) {
+    const userData = await User.findAll();
+    if (!userData) {
       res.status(400).json({ message: 'No users.' });
     }
-    res.status(200).json(users);
+
+    const users = userData.map((user) => user.get({ plain: true }));
+
+    console.log(users);
+
+    res.render('login', {
+      title: 'Current Users',
+      users,
+    });
   } catch (error) {
     res.status(500).json(error);
   }
@@ -27,5 +47,37 @@ router.get('/:id', async (req, res) => {
     res.status(500).json(error);
   }
 });
+
+router.post('/', async (req, res) => {
+  try {
+    const newUser = await User.create(req.body);
+
+    if (!newUser) {
+      res
+        .status(400)
+        .json({ message: `Couldn't create user ${req.body.name}` });
+    }
+
+    res.status(200).json({ message: `User ${req.body.name} created` });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+// router.put('/', async (req, res) => {
+//   try {
+//     const updatedUser = await User.update(req.body);
+
+//     if (!newUser) {
+//       res
+//         .status(400)
+//         .json({ message: `Couldn't create user ${req.body.name}` });
+//     }
+
+//     res.status(200).json({ message: `User ${req.body.name} created` });
+//   } catch (error) {
+//     res.status(500).json(error);
+//   }
+// });
 
 module.exports = router;
