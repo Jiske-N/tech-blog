@@ -23,8 +23,6 @@ router.get('/', async (req, res) => {
 
     const users = userData.map((user) => user.get({ plain: true }));
 
-    console.log(users);
-
     res.render('login', {
       title: 'Current Users',
       users,
@@ -58,7 +56,11 @@ router.post('/', async (req, res) => {
         .json({ message: `Couldn't create user ${req.body.name}` });
     }
 
-    res.status(200).json({ message: `User ${req.body.name} created` });
+    // res.redirect('/')
+    res
+      .status(200)
+      // .json({ message: `User ${req.body.name} created` })
+      .redirect('/api/users');
   } catch (error) {
     res.status(500).json(error);
   }
