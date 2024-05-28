@@ -5,17 +5,6 @@ const { BlogPost, User } = require('../models');
 router.get('/', async (req, res) => {
   try {
     // console.log('homeRoutes', 'get triggered');
-
-    // // get all blog posts
-    // const blogPostData2 = await BlogPost.findAll({
-    //   // include: [
-    //   //   {
-    //   //     model: User,
-    //   //     attributes: ['name'],
-    //   //   },
-    //   // ],
-    // });
-
     // console.log('homeRoutes', blogPostData2);
 
     // get all blog posts
@@ -38,6 +27,7 @@ router.get('/', async (req, res) => {
 
     res.render('homepage', {
       blogPosts,
+      logged_in: req.session.logged_in,
     });
   } catch (error) {
     res.status(500).json(error);
