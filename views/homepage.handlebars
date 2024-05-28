@@ -22,19 +22,23 @@
     </div>
   </div>
 </nav>
+
     <main>
-      <div class="container">
+      {{#each blogPosts as |blogPost|}}
+      <div class="container bg-dark">
 <div class="card">
-  <h5 class="card-header">Post Title</h5>
+  <h5 class="card-header bg-success text-white">{{blogPost.title}}</h5>
   <div class="card-body">
-    <p class="card-text">Post content</p>
+    <p class="card-text">{{blogPost.content}}</p>
     <blockquote class="blockquote mb-0">
-      <footer class="blockquote-footer">Username <cite title="Date">Date</cite></footer>
+      <footer class="blockquote-footer">{{blogPost.user.name}}  <cite title="Date">{{blogPost.updatedAt}}</cite></footer>
     </blockquote>
   </div>
 </div>
 </div>
+{{/each}}
     </main>
+
     {{!-- <footer>
         <p id="footertag">Made with a <span id="UTF-8style">&#128187</span> by Jiske</p>
         <ul id="contactlinks">
