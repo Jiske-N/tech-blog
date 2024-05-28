@@ -18,9 +18,12 @@ const userData = [
   },
 ];
 
-const seedUsers = () => {
+const seedUsers = async () => {
   console.log('seedUsers function started');
-  User.bulkCreate(userData);
+  await User.bulkCreate(userData, {
+    individualHooks: true,
+    returning: true,
+  });
 };
 
 module.exports = seedUsers;

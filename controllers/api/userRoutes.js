@@ -2,84 +2,55 @@ const express = require('express');
 const router = express.Router();
 const { User } = require('../../models');
 
-// router.get('/', async (req, res) => {
-//   try {
-//     const users = await User.findAll();
-//     if (!users) {
-//       res.status(400).json({ message: 'No users.' });
-//     }
-//     res.status(200).json(users);
-//   } catch (error) {
-//     res.status(500).json(error);
-//   }
-// });
-
-router.get('/', async (req, res) => {
+// create new user
+router.post('/', async (req, res) => {
   try {
-    const userData = await User.findAll();
+    console.log('userRoutes createNew started');
+    const userData = await User.create(req.body);
+    console.log('userRoutes createNew', userData);
+    req.session.user_id = userData.id;
+    req.session.logged_in = true;
+
+    res.status(200).json(userData);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+// existing user login
+router.post('/login', async (req, res) => {
+  try {
+    console.log('userRoutes login started');
+    const userData = await User.findOne({ where: { email: req.body.email } });
+    console.log('userRoutes login', userData);
+
     if (!userData) {
-      res.status(400).json({ message: 'No users.' });
+      res
+        .status(400)
+        .json({ message: 'Incorrect email or password, please try again' });
+      return;
     }
 
-    const users = userData.map((user) => user.get({ plain: true }));
+    const validatePassword = await userData.checkPassword(
+      req.body.checkPassword
+    );
 
-    res.render('login', {
-      title: 'Current Users',
-      users,
+    if (!validatePassword) {
+      res
+        .status(400)
+        .json({ message: 'Incorrect email or password, please try again' });
+      return;
+    }
+
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
+
+      res.json({ user: userData, message: 'You are now logged in!' });
     });
   } catch (error) {
     res.status(500).json(error);
   }
 });
-
-router.get('/:id', async (req, res) => {
-  try {
-    const user = await User.findByPk(req.params.id);
-    if (!user) {
-      res
-        .status(400)
-        .json({ message: `No user the the id of ${req.params.id}` });
-    }
-    res.status(200).json(user);
-  } catch (error) {
-    res.status(500).json(error);
-  }
-});
-
-router.post('/', async (req, res) => {
-  try {
-    const newUser = await User.create(req.body);
-
-    if (!newUser) {
-      res
-        .status(400)
-        .json({ message: `Couldn't create user ${req.body.name}` });
-    }
-
-    // res.redirect('/')
-    res
-      .status(200)
-      // .json({ message: `User ${req.body.name} created` })
-      .redirect('/api/users');
-  } catch (error) {
-    res.status(500).json(error);
-  }
-});
-
-// router.put('/', async (req, res) => {
-//   try {
-//     const updatedUser = await User.update(req.body);
-
-//     if (!newUser) {
-//       res
-//         .status(400)
-//         .json({ message: `Couldn't create user ${req.body.name}` });
-//     }
-
-//     res.status(200).json({ message: `User ${req.body.name} created` });
-//   } catch (error) {
-//     res.status(500).json(error);
-//   }
-// });
 
 module.exports = router;
