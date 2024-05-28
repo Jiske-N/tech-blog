@@ -4,7 +4,7 @@ const { BlogPost, User } = require('../models');
 
 router.get('/', async (req, res) => {
   try {
-    console.log('homeRoutes', 'get triggered');
+    // console.log('homeRoutes', 'get triggered');
 
     // // get all blog posts
     // const blogPostData2 = await BlogPost.findAll({
@@ -34,7 +34,7 @@ router.get('/', async (req, res) => {
       project.get({ plain: true })
     );
 
-    console.log('homeRoutes blogPosts', blogPosts);
+    // console.log('homeRoutes blogPosts', blogPosts);
 
     res.render('homepage', {
       blogPosts,
