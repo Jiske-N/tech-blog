@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { BlogPost, User, Comment } = require('../models');
+const { BlogPost, User, Comment } = require('../../models');
 
 // display dashboard with all users blog posts
 router.get('/', async (req, res) => {
@@ -34,6 +34,16 @@ router.get('/', async (req, res) => {
       blogPosts,
       logged_in: req.session.logged_in,
     });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+// get/render new post form
+router.get('/new-post', (req, res) => {
+  try {
+    console.log('new-postRoutes', 'get triggered');
+    res.render('new-post');
   } catch (error) {
     res.status(500).json(error);
   }
