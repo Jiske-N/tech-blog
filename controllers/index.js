@@ -5,6 +5,7 @@ const signupRoutes = require('./signupRoutes');
 const apiRoutes = require('./api');
 
 router.use('/', homeRoutes);
+router.use('/comment', homeRoutes);
 router.use('/login', loginRoutes);
 router.use('/signup', signupRoutes);
 router.use('/api', apiRoutes);
