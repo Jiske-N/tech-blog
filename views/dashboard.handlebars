@@ -1,22 +1,26 @@
 {{#each blogPosts as |blogPost|}}
 {{> postContents}}
+{{!-- <div class='container bg-dark'>
+  <a href='/comment/{{blogPost.id}}' class='card mt-4 text-decoration-none'>
+    <h5 class='card-header bg-success text-white'>{{blogPost.title}}</h5>
+    <div class='card-body'>
+      <p class='card-text'>{{blogPost.content}}</p>
+      <blockquote class='blockquote mb-0'>
+        <footer class='blockquote-footer'>{{blogPost.user.name}}
+          <cite title='Date'>{{blogPost.updatedAt}}</cite></footer>
+      </blockquote>
+    </div>
+  </a>
+</div> --}}
 {{/each}}
 
 <div class='container bg-dark'>
   <div class='card mt-4'>
-    <h5 class='card-header bg-success text-white'></h5>
-    <form class='card-body mb-3' id="comment-form">
-      <div class='mb-3'>
-        <label
-          for='textarea'
-          class='form-label'
-        >Comment</label>
-        <textarea class='form-control' id='textarea' rows='3' data-blogpost-id="{{blogPost.id}}"></textarea>
-      </div>
+    <form class='card-body' id="comment-form">
       <button
         type='submit'
         class='btn btn-secondary form-control'
-      >Submit!</button>
+      >New Post!</button>
     </form>
   </div>
 </div>

@@ -5,11 +5,12 @@ const { BlogPost, User, Comment } = require('../models');
 // display dashboard with all users blog posts
 router.get('/', async (req, res) => {
   try {
-    // console.log('homeRoutes', 'get triggered');
-    // console.log('homeRoutes', blogPostData2);
-    const user = req.session.logged_in;
+    // console.log('dashboardRoutes', 'get triggered');
+    // console.log('dashboardRoutes', blogPostData2);
+    const user = req.session.user_id;
     // get all blog posts
-    const blogPostData = await BlogPost.findByPk(user, {
+    console.log(user);
+    const blogPostData = await BlogPost.findAll({
       include: [
         {
           model: User,
@@ -18,11 +19,16 @@ router.get('/', async (req, res) => {
       ],
     });
 
-    // console.log('homeRoutes blogPostData', blogPostData);
+    // console.log('dashboardRoutes blogPostData', blogPostData);
 
-    const blogPosts = blogPostData.map((post) => post.get({ plain: true }));
+    const blogPostsPlain = blogPostData.map((post) =>
+      post.get({ plain: true })
+    );
+    const blogPosts = blogPostsPlain.filter((post) => post.user_id === user);
 
-    console.log('homeRoutes blogPosts', blogPosts);
+    // const blogPosts = blogPostData.get({ plain: true });
+
+    // console.log('dashboardRoutes blogPosts', blogPosts);
 
     res.render('dashboard', {
       blogPosts,
