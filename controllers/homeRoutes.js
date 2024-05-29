@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { BlogPost, User } = require('../models');
+const { BlogPost, User, Comment } = require('../models');
 
 // display homepage with all blog posts
 router.get('/', async (req, res) => {
@@ -20,9 +20,7 @@ router.get('/', async (req, res) => {
 
     // console.log('homeRoutes blogPostData', blogPostData);
 
-    const blogPosts = blogPostData.map((project) =>
-      project.get({ plain: true })
-    );
+    const blogPosts = blogPostData.map((post) => post.get({ plain: true }));
 
     // console.log('homeRoutes blogPosts', blogPosts);
 
@@ -41,7 +39,7 @@ router.get('/comment/:id', async (req, res) => {
     // console.log('homeRoutes', 'get triggered');
     // console.log('homeRoutes', blogPostData2);
 
-    // get all blog posts
+    // get blog post by id
     const blogPostData = await BlogPost.findByPk(req.params.id, {
       include: [
         {
@@ -57,8 +55,32 @@ router.get('/comment/:id', async (req, res) => {
 
     // console.log('homeRoutes blogPosts', blogPosts);
 
+    // get all comments for post
+    const commentData = await Comment.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+    });
+
+    // console.log(commentData);
+    // console.log('homeRoutes blogPostData', blogPostData);
+
+    const commentsPlain = commentData.map((comment) =>
+      comment.get({ plain: true })
+    );
+    const comments = commentsPlain.filter(
+      (comment) => comment.blogPost_id === blogPost.id
+    );
+
+    // console.log(blogPost.id, commentsPlain);
+    // console.log(blogPost, commentsPlain);
+
     res.render('comment', {
       blogPost,
+      comments,
       logged_in: req.session.logged_in,
     });
   } catch (error) {

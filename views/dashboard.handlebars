@@ -1,18 +1,5 @@
-<div class='container bg-dark'>
-  <div class='card mt-4'>
-    <h5 class='card-header bg-success text-white'>{{blogPost.title}}</h5>
-    <div class='card-body'>
-      <p class='card-text'>{{blogPost.content}}</p>
-      <blockquote class='blockquote mb-0'>
-        <footer class='blockquote-footer'>{{blogPost.user.name}}
-          <cite title='Date'>{{blogPost.updatedAt}}</cite></footer>
-      </blockquote>
-    </div>
-  </div>
-</div>
-
-{{#each comments as |comments|}}
-{{> commentContent}}
+{{#each blogPosts as |blogPost|}}
+{{> postContents}}
 {{/each}}
 
 <div class='container bg-dark'>
@@ -33,5 +20,3 @@
     </form>
   </div>
 </div>
-
-<script src="/js/comment.js"></script>
