@@ -1,7 +1,11 @@
 <div class="container bg-dark">
 <div class="card mt-4">
-  <h5 class="card-header bg-success text-white">Login</h5>
-<form class="card-body" id="login-form">
+  <h5 class="card-header bg-success text-white">Sign Up</h5>
+<form class="card-body" id="signup-form">
+  <div class="mb-3">
+    <label for="username" class="form-label">Username</label>
+    <input type="text" class="form-control" id="name">
+  </div>
   <div class="mb-3">
     <label for="email" class="form-label">Email address</label>
     <input type="email" class="form-control" id="email">
@@ -12,12 +16,12 @@
     <input type="password" class="form-control" id="password">
   </div>
   <div class="mb-3">
-  <button type="submit" class="btn btn-secondary form-control">Login!</button>
+  <button type="submit" class="btn btn-secondary form-control">Sign Up!</button>
   </div>
 
-  <a href="/signup">Sign up instead</a>
+  <a href="/login">Login instead</a>
 </form>
 </div>
 </div>
 
-<script src="/js/login.js"></script>
+<script src="/js/signup.js"></script>

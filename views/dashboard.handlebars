@@ -1,0 +1,31 @@
+{{#each blogPosts as |blogPost|}}
+{{!-- {{> postContents}} --}}
+<div class='container bg-dark'>
+  <a href='/dashboard/edit-post/{{blogPost.id}}' class='card mt-4 text-decoration-none'>
+  <div class='card-header bg-success text-white'>
+    <h5 >{{blogPost.title}}</h5>
+    {{!-- <div class='card-body'>
+      <p class='card-text'>{{blogPost.content}}</p>
+      <blockquote class='blockquote mb-0'>
+        <footer class='blockquote-footer'>{{blogPost.user.name}} --}}
+          <cite title='Date'>{{format_date blogPost.updatedAt}}</cite>
+          {{!-- </footer>
+      </blockquote>
+    </div> --}}
+    </div>
+  </a>
+</div>
+{{/each}}
+
+<div class='container bg-dark'>
+  <div class='mt-4'>
+    <a href="/dashboard/new-post">
+      <button
+        type='submit'
+        class='btn btn-secondary form-control'
+      >+ New Post!</button>
+    </a>
+  </div>
+</div>
+
+{{!-- <script src="/js/post.js"></script> --}}
