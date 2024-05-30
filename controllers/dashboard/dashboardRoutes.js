@@ -49,4 +49,17 @@ router.get('/new-post', (req, res) => {
   }
 });
 
+// get/render edit post form
+router.get('/edit-post/:id', async (req, res) => {
+  try {
+    const blogPostData = await BlogPost.findByPk(req.params.id);
+
+    const blogPost = blogPostData.get({ plain: true });
+
+    res.render('edit-post', { blogPost });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
 module.exports = router;

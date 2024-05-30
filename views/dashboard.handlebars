@@ -1,21 +1,24 @@
 {{#each blogPosts as |blogPost|}}
-{{> postContents}}
-{{!-- <div class='container bg-dark'>
-  <a href='/comment/{{blogPost.id}}' class='card mt-4 text-decoration-none'>
-    <h5 class='card-header bg-success text-white'>{{blogPost.title}}</h5>
-    <div class='card-body'>
+{{!-- {{> postContents}} --}}
+<div class='container bg-dark'>
+  <a href='/dashboard/edit-post/{{blogPost.id}}' class='card mt-4 text-decoration-none'>
+  <div class='card-header bg-success text-white'>
+    <h5 >{{blogPost.title}}</h5>
+    {{!-- <div class='card-body'>
       <p class='card-text'>{{blogPost.content}}</p>
       <blockquote class='blockquote mb-0'>
-        <footer class='blockquote-footer'>{{blogPost.user.name}}
-          <cite title='Date'>{{blogPost.updatedAt}}</cite></footer>
+        <footer class='blockquote-footer'>{{blogPost.user.name}} --}}
+          <cite title='Date'>{{blogPost.updatedAt}}</cite>
+          {{!-- </footer>
       </blockquote>
+    </div> --}}
     </div>
   </a>
-</div> --}}
+</div>
 {{/each}}
 
 <div class='container bg-dark'>
-  <div class='card mt-4'>
+  <div class='mt-4'>
     <a href="/dashboard/new-post">
       <button
         type='submit'
