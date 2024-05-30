@@ -26,6 +26,7 @@ router.get('/', async (req, res) => {
 
     res.render('homepage', {
       blogPosts,
+      header_title: 'The Tech Blog',
       logged_in: req.session.logged_in,
     });
   } catch (error) {
@@ -81,6 +82,7 @@ router.get('/comment/:id', async (req, res) => {
     res.render('comment', {
       blogPost,
       comments,
+      header_title: 'The Tech Blog',
       logged_in: req.session.logged_in,
     });
   } catch (error) {

@@ -13,6 +13,7 @@ router.get('/', async (req, res) => {
 
     res.render('login', {
       title: 'Current Users',
+      header_title: 'The Tech Blog',
       users,
     });
   } catch (error) {

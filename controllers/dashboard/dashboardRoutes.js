@@ -33,6 +33,7 @@ router.get('/', checkAuthorisation, async (req, res) => {
 
     res.render('dashboard', {
       blogPosts,
+      header_title: 'Your Dashboard',
       logged_in: req.session.logged_in,
     });
   } catch (error) {
@@ -44,7 +45,10 @@ router.get('/', checkAuthorisation, async (req, res) => {
 router.get('/new-post', checkAuthorisation, (req, res) => {
   try {
     console.log('new-postRoutes', 'get triggered');
-    res.render('new-post', { logged_in: req.session.logged_in });
+    res.render('new-post', {
+      header_title: 'Your Dashboard',
+      logged_in: req.session.logged_in,
+    });
   } catch (error) {
     res.status(500).json(error);
   }
@@ -57,7 +61,11 @@ router.get('/edit-post/:id', checkAuthorisation, async (req, res) => {
 
     const blogPost = blogPostData.get({ plain: true });
 
-    res.render('edit-post', { blogPost, logged_in: req.session.logged_in });
+    res.render('edit-post', {
+      blogPost,
+      header_title: 'Your Dashboard',
+      logged_in: req.session.logged_in,
+    });
   } catch (error) {
     res.status(500).json(error);
   }
