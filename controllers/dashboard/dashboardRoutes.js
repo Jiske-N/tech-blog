@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const { BlogPost, User, Comment } = require('../../models');
+const checkAuthorisation = require('../../utils/authorisation');
 
 // display dashboard with all users blog posts
-router.get('/', async (req, res) => {
+router.get('/', checkAuthorisation, async (req, res) => {
   try {
     // console.log('dashboardRoutes', 'get triggered');
     // console.log('dashboardRoutes', blogPostData2);
@@ -40,23 +41,23 @@ router.get('/', async (req, res) => {
 });
 
 // get/render new post form
-router.get('/new-post', (req, res) => {
+router.get('/new-post', checkAuthorisation, (req, res) => {
   try {
     console.log('new-postRoutes', 'get triggered');
-    res.render('new-post');
+    res.render('new-post', { logged_in: req.session.logged_in });
   } catch (error) {
     res.status(500).json(error);
   }
 });
 
 // get/render edit post form
-router.get('/edit-post/:id', async (req, res) => {
+router.get('/edit-post/:id', checkAuthorisation, async (req, res) => {
   try {
     const blogPostData = await BlogPost.findByPk(req.params.id);
 
     const blogPost = blogPostData.get({ plain: true });
 
-    res.render('edit-post', { blogPost });
+    res.render('edit-post', { blogPost, logged_in: req.session.logged_in });
   } catch (error) {
     res.status(500).json(error);
   }

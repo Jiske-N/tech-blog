@@ -15,6 +15,7 @@
 {{> commentContent}}
 {{/each}}
 
+        {{#if logged_in}}
 <div class='container bg-dark'>
   <div class='card mt-4'>
     <h5 class='card-header bg-success text-white'></h5>
@@ -33,5 +34,11 @@
     </form>
   </div>
 </div>
-
+        {{else}}
+        <div class='container bg-dark'>
+  <div class='card mt-4'>
+<a>please login to add a comment.</a>
+  </div>
+</div>
+        {{/if}}
 <script src="/js/comment.js"></script>
