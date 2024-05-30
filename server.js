@@ -6,6 +6,7 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const helpers = require('./utils/helpers');
 
 const sess = {
   secret: process.env.SECRET,
@@ -24,8 +25,11 @@ const sess = {
 
 app.use(session(sess));
 
+// Set up Handlebars.js engine with custom helpers
+const hbs = exphbs.create({ helpers });
+
 // handlebars middleware
-app.engine('handlebars', exphbs());
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 // body parser middleware
