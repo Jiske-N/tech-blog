@@ -1,23 +1,40 @@
 <div class="container bg-dark">
-<div class="card mt-4">
-  <h5 class="card-header bg-success text-white">Edit Post</h5>
-<form class="card-body" id="edit-form">
-  <div class="mb-3">
-    <label for="title" class="form-label">Title</label>
-    <input type="text" class="form-control" id="title" value="{{blogPost.title}}">
-  </div>
-  <div class="mb-3">
-    <label for="content" class="form-label">Content</label>
-  <textarea class="form-control" id="content" rows="3" data-blogpost-id="{{blogPost.id}}">{{blogPost.content}}</textarea>
-  </div>
-  <div class="mb-3">
-  <button type="submit" class="btn btn-secondary form-control">Update Post</button>
-  </div>
-    <div class="mb-3">
-  <button type="button" class="btn btn-secondary form-control" id="delete">Delete</button>
-  </div>
-</form>
-</div>
+    <div class="card mt-4">
+        <h5 class="card-header bg-success text-white">Edit Post</h5>
+        <form class="card-body" id="edit-form">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="title"
+                    value="{{blogPost.title}}"
+                />
+            </div>
+            <div class="mb-3">
+                <label for="content" class="form-label">Content</label>
+                <textarea
+                    class="form-control"
+                    id="content"
+                    rows="3"
+                    data-blogpost-id="{{blogPost.id}}"
+                >{{blogPost.content}}</textarea>
+            </div>
+            <div class="mb-3">
+                <button
+                    type="submit"
+                    class="btn btn-secondary form-control"
+                >Update Post</button>
+            </div>
+            <div class="mb-3">
+                <button
+                    type="button"
+                    class="btn btn-secondary form-control"
+                    id="delete"
+                >Delete</button>
+            </div>
+        </form>
+    </div>
 </div>
 
 <script src="/js/post.js"></script>
