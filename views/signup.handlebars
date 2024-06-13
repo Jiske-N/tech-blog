@@ -1,27 +1,46 @@
 <div class="container bg-dark">
-<div class="card mt-4">
-  <h5 class="card-header bg-success text-white">Sign Up</h5>
-<form class="card-body" id="signup-form">
-  <div class="mb-3">
-    <label for="username" class="form-label">Username</label>
-    <input type="text" class="form-control" id="name">
-  </div>
-  <div class="mb-3">
-    <label for="email" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="email">
-    <div class="form-text">We'll never share your email with anyone else.</div>
-  </div>
-  <div class="mb-3">
-    <label for="password" class="form-label">Password</label>
-    <input type="password" class="form-control" id="password">
-  </div>
-  <div class="mb-3">
-  <button type="submit" class="btn btn-secondary form-control">Sign Up!</button>
-  </div>
+    <div class="card mt-4">
+        <h5 class="card-header bg-success text-white">Sign Up</h5>
+        <form class="card-body" id="signup-form">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input
+                    type="text"
+                    required="required"
+                    class="form-control"
+                    id="name"
+                />
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input
+                    type="email"
+                    required="required"
+                    class="form-control"
+                    id="email"
+                />
+                <div class="form-text">We'll never share your email with anyone
+                    else.</div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input
+                    type="password"
+                    required="required"
+                    class="form-control"
+                    id="password"
+                />
+            </div>
+            <div class="mb-3">
+                <button
+                    type="submit"
+                    class="btn btn-secondary form-control"
+                >Sign Up!</button>
+            </div>
 
-  <a href="/login">Login instead</a>
-</form>
-</div>
+            <a href="/login">Login instead</a>
+        </form>
+    </div>
 </div>
 
 <script src="/js/signup.js"></script>

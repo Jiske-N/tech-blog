@@ -1,24 +1,15 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const { User } = require('../../models');
 
-router.get('/', async (req, res) => {
-  try {
-    const userData = await User.findAll();
-    if (!userData) {
-      res.status(400).json({ message: 'No users.' });
+router.get("/", async (req, res) => {
+    try {
+        res.render("signup", {
+            title: "Current Users",
+            header_title: "The Tech Blog",
+        });
+    } catch (error) {
+        res.status(500).json(error);
     }
-
-    const users = userData.map((user) => user.get({ plain: true }));
-
-    res.render('signup', {
-      title: 'Current Users',
-      header_title: 'The Tech Blog',
-      users,
-    });
-  } catch (error) {
-    res.status(500).json(error);
-  }
 });
 
 module.exports = router;
