@@ -10,7 +10,7 @@ This project was designed for a user to be able to publish their blog posts and 
 
 ## Link & Contents
 
--   [The Deployed Page]()
+-   [The Deployed Page](https://tech-blog-axsl.onrender.com)
 -   [Installation and Usage](#installation-and-usage)
 -   [Future Development](#future-development)
 -   [Credits](#credits)
@@ -28,7 +28,7 @@ This project was designed for a user to be able to publish their blog posts and 
 
 This site is live on the web so no installation is necessary.
 
-Just click the following [link](), login of signup and start posting!
+Just click the following [link](https://tech-blog-axsl.onrender.com), login of signup and start posting!
 
 ## Future Development
 
