@@ -16,7 +16,9 @@ User.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        name: { type: DataTypes.STRING, allowNull: false },
+        // name has to be unique because it's used to locate the user when logging in
+        // email would be alot better but the task said use name
+        name: { type: DataTypes.STRING, unique: true, allowNull: false },
         email: {
             type: DataTypes.STRING,
             allowNull: false,
