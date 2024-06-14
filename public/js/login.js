@@ -2,14 +2,14 @@ const handleLoginForm = async (submission) => {
     submission.preventDefault();
 
     //   collect login data
-    const email = document.querySelector("#email").value.trim();
+    const name = document.querySelector("#name").value.trim();
     const password = document.querySelector("#password").value.trim();
 
     // if login data exists send it to the api
-    if (email && password) {
+    if (name && password) {
         const response = await fetch("/api/users/login", {
             method: "POST",
-            body: JSON.stringify({ email, password }),
+            body: JSON.stringify({ name, password }),
             headers: { "Content-Type": "application/json" },
         });
 

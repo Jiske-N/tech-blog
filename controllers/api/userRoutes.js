@@ -23,7 +23,9 @@ router.post("/login", async (req, res) => {
     try {
         // locate user in the database
         const userData = await User.findOne({
-            where: { email: req.body.email },
+            // name is used here because the mockup requested it.
+            // email would probably be better suited.
+            where: { name: req.body.name },
         });
 
         // check they exist
