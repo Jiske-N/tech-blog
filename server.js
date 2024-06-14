@@ -8,6 +8,8 @@ const sequelize = require("./config/connection");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const helpers = require("./utils/helpers");
 
+const port = process.env.PORT || 6543;
+
 // set up session to be used for user authorisation etc
 const sess = {
     secret: process.env.SECRET,
@@ -41,11 +43,9 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(routes);
 
-// port related controls
-const PORT = process.env.PORT || 6543;
-
+// sync database and start server
 sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => {
-        console.log(`Example app listening on port ${PORT}`);
+    app.listen(port, () => {
+        console.log(`Now listening on port ${port}`);
     });
 });
