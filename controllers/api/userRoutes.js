@@ -31,7 +31,7 @@ router.post("/login", async (req, res) => {
         // check they exist
         if (!userData) {
             res.status(400).json({
-                message: "Incorrect email or password, please try again",
+                message: "Incorrect login combination, please try again",
             });
             return;
         }
@@ -44,7 +44,7 @@ router.post("/login", async (req, res) => {
         // check passwords do match
         if (!validatePassword) {
             res.status(400).json({
-                message: "Incorrect email or password, please try again",
+                message: "Incorrect login combination, please try again",
             });
             return;
         }
